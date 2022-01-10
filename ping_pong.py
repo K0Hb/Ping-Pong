@@ -1,5 +1,7 @@
 import turtle
 from random import choice, randint
+
+
 # настроки окна
 window = turtle.Screen()
 window.title('Ping-Pong')
@@ -49,6 +51,7 @@ rocket_right.shapesize(stretch_len=1, stretch_wid=5)
 rocket_right.penup()
 rocket_right.goto(450, 0)
 
+# ограничение движения ракеток
 def move_up_left():
     y = rocket_left.ycor() + 10
     if y > 240:
@@ -73,6 +76,12 @@ def move_down_right():
         y= -240
     rocket_right.sety(y - 10)
 
+# добалявем упраление рокеткам 
+window.listen()
+window.onkeypress(move_up_left, 'w')
+window.onkeypress(move_down_left, 's')
+window.onkeypress(move_up_right, 'Up')
+window.onkeypress(move_down_right, 'Down')
 
 # создание шарика 
 ball = turtle.Turtle()
@@ -83,12 +92,24 @@ ball.dx = 5
 ball.dy = 5
 ball.penup()
 
-window.listen()
-window.onkeypress(move_up_left, 'w')
-window.onkeypress(move_down_left, 's')
-window.onkeypress(move_up_right, 'Up')
-window.onkeypress(move_down_right, 'Down')
+# создание счетчка очков
+FONT = ('Arial', 44)
 
+count_left = 0
+scoreboard_l = turtle.Turtle(visible= False)
+scoreboard_l.penup()
+scoreboard_l.color('white')
+scoreboard_l.setposition(-220, 310)
+scoreboard_l.write(count_left, font= FONT)
+
+count_right = 0
+scoreboard_R = turtle.Turtle(visible= False)
+scoreboard_R.penup()
+scoreboard_R.color('white')
+scoreboard_R.setposition(220, 310)
+scoreboard_R.write(count_left, font= FONT)
+
+# основной цикл игры + механика отражений 
 while True:
     window.update()
 
@@ -102,12 +123,18 @@ while True:
         ball.dy = -ball.dy
 
     if ball.xcor() >= 490:
+        count_left += 1
+        scoreboard_l.clear()
+        scoreboard_l.write(count_left, font= FONT)
         ball.goto(0, randint(-150, 150))
         ball.dx = -ball.dx
         ball.dx = choice([x for x in range(1,5)])
         ball.dy = choice([x for x in range(1,5)])
 
     if ball.xcor() <= -490:
+        count_right += 1
+        scoreboard_R.clear()
+        scoreboard_R.write(count_right, font= FONT)
         ball.dx = -ball.dx
         ball.goto(0, randint(-150, 150))
         ball.dx = choice([x for x in range(3, 8)])
