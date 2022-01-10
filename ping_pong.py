@@ -5,6 +5,7 @@ window = turtle.Screen()
 window.title('Ping-Pong')
 window.setup(width= 1.0, height= 1.0 )
 window.bgcolor('black')
+window.tracer(1.2)
 
 # настроки черепахи
 border = turtle.Turtle()
@@ -78,8 +79,8 @@ ball = turtle.Turtle()
 ball.shape('circle')
 ball.color('red')
 ball.speed(5)
-ball.dx = 3
-ball.dy = 3
+ball.dx = 5
+ball.dy = 5
 ball.penup()
 
 window.listen()
@@ -101,16 +102,23 @@ while True:
         ball.dy = -ball.dy
 
     if ball.xcor() >= 490:
-        # ball.goto(0, 0)
         ball.goto(0, randint(-150, 150))
         ball.dx = -ball.dx
-        ball.dx = choice([x for x in range(-4,5)])
-        ball.dy = choice([x for x in range(-4,5)])
+        ball.dx = choice([x for x in range(1,5)])
+        ball.dy = choice([x for x in range(1,5)])
 
     if ball.xcor() <= -490:
         ball.dx = -ball.dx
         ball.goto(0, randint(-150, 150))
-        ball.dx = choice([x for x in range(-4,5)])
-        ball.dy = choice([x for x in range(-4,5)])
+        ball.dx = choice([x for x in range(3, 8)])
+        ball.dy = choice([x for x in range(3, 8)])
+
+    if ball.ycor() >= rocket_right.ycor() - 60 and ball.ycor() <= rocket_right.ycor() + 60 \
+        and ball.xcor() >= rocket_right.xcor() -6 and ball.xcor() <= rocket_right.xcor() + 6:
+        ball.dx = -ball.dx
+
+    if ball.ycor() >= rocket_left.ycor() - 60 and ball.ycor() <= rocket_left.ycor() + 60 \
+        and ball.xcor() >= rocket_left.xcor() -6 and ball.xcor() <= rocket_left.xcor() + 6:
+        ball.dx = -ball.dx
 
 window.mainloop()
