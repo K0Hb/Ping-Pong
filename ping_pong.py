@@ -1,5 +1,5 @@
 import turtle
-
+from random import choice, randint
 # настроки окна
 window = turtle.Screen()
 window.title('Ping-Pong')
@@ -72,11 +72,45 @@ def move_down_right():
         y= -240
     rocket_right.sety(y - 10)
 
+
+# создание шарика 
+ball = turtle.Turtle()
+ball.shape('circle')
+ball.color('red')
+ball.speed(5)
+ball.dx = 3
+ball.dy = 3
+ball.penup()
+
 window.listen()
 window.onkeypress(move_up_left, 'w')
 window.onkeypress(move_down_left, 's')
 window.onkeypress(move_up_right, 'Up')
 window.onkeypress(move_down_right, 'Down')
 
+while True:
+    window.update()
+
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    if ball.ycor() >= 290:
+        ball.dy = -ball.dy
+
+    if ball.ycor() <= -290:
+        ball.dy = -ball.dy
+
+    if ball.xcor() >= 490:
+        # ball.goto(0, 0)
+        ball.goto(0, randint(-150, 150))
+        ball.dx = -ball.dx
+        ball.dx = choice([x for x in range(-4,5)])
+        ball.dy = choice([x for x in range(-4,5)])
+
+    if ball.xcor() <= -490:
+        ball.dx = -ball.dx
+        ball.goto(0, randint(-150, 150))
+        ball.dx = choice([x for x in range(-4,5)])
+        ball.dy = choice([x for x in range(-4,5)])
 
 window.mainloop()
