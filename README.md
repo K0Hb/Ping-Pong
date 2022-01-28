@@ -5,5 +5,5 @@
 
 Badge codewars для красоты )
 
-[!(https://www.codewars.com/users/K0Hb/badges/large)](https://www.codewars.com/users/K0Hb/badges/large)
+[![Badge](https://www.codewars.com/users/K0Hb/badges/large)](https://www.codewars.com/users/K0Hb/badges/large)
 
