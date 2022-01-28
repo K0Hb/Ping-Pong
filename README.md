@@ -3,3 +3,7 @@
 
 ![Иллюстрация к проекту](https://github.com/K0Hb/Ping-Pong/blob/main/ping_pong.png)
 !(https://www.codewars.com/users/K0Hb/badges/large)
+### Статсус тестов:
+[![Actions Status](https://www.codewars.com/users/K0Hb/badges/large)](https://www.codewars.com/users/K0Hb/badges/large)
+<a href="https://www.codewars.com/users/K0Hb/badges/large"><img src="https://www.codewars.com/users/K0Hb/badges/large" /></a>
+
